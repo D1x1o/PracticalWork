@@ -33,15 +33,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.loginTextBox = new System.Windows.Forms.TextBox();
             this.pwdTextBox = new System.Windows.Forms.TextBox();
-            this.replaceBTN = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.captchaIMG = new System.Windows.Forms.PictureBox();
             this.cptTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.captchaIMG = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.captchaPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.replaceBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.captchaIMG)).BeginInit();
-            this.captchaPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -90,55 +88,6 @@
             this.pwdTextBox.Size = new System.Drawing.Size(156, 29);
             this.pwdTextBox.TabIndex = 1;
             // 
-            // replaceBTN
-            // 
-            this.replaceBTN.Location = new System.Drawing.Point(410, 282);
-            this.replaceBTN.Name = "replaceBTN";
-            this.replaceBTN.Size = new System.Drawing.Size(138, 42);
-            this.replaceBTN.TabIndex = 7;
-            this.replaceBTN.Text = "Обновить";
-            this.replaceBTN.UseVisualStyleBackColor = true;
-            this.replaceBTN.Click += new System.EventHandler(this.replaceBTN_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(263, 282);
-            this.button2.Margin = new System.Windows.Forms.Padding(6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 42);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Проверить";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // cptTextBox
-            // 
-            this.cptTextBox.Location = new System.Drawing.Point(293, 241);
-            this.cptTextBox.Margin = new System.Windows.Forms.Padding(6);
-            this.cptTextBox.MaxLength = 10;
-            this.cptTextBox.Name = "cptTextBox";
-            this.cptTextBox.Size = new System.Drawing.Size(214, 29);
-            this.cptTextBox.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(330, 211);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 24);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Введите капчу";
-            // 
-            // captchaIMG
-            // 
-            this.captchaIMG.Location = new System.Drawing.Point(254, 15);
-            this.captchaIMG.Margin = new System.Windows.Forms.Padding(6);
-            this.captchaIMG.Name = "captchaIMG";
-            this.captchaIMG.Size = new System.Drawing.Size(300, 190);
-            this.captchaIMG.TabIndex = 4;
-            this.captchaIMG.TabStop = false;
-            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(12, 317);
@@ -146,30 +95,68 @@
             this.button3.Size = new System.Drawing.Size(21, 23);
             this.button3.TabIndex = 8;
             this.button3.Text = "button3";
-            this.button3.Visible = false; //-=----------------------------------------------------------------------------
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // captchaPanel
+            // captchaIMG
             // 
-            this.captchaPanel.Controls.Add(this.captchaIMG);
-            this.captchaPanel.Controls.Add(this.cptTextBox);
-            this.captchaPanel.Controls.Add(this.label3);
-            this.captchaPanel.Controls.Add(this.button2);
-            this.captchaPanel.Controls.Add(this.replaceBTN);
-            this.captchaPanel.Location = new System.Drawing.Point(0, 0);
-            this.captchaPanel.Name = "captchaPanel";
-            this.captchaPanel.Size = new System.Drawing.Size(611, 352);
-            this.captchaPanel.TabIndex = 9;
-            this.captchaPanel.Visible = false;
-            this.captchaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.captchaPanel_Paint);
+            this.captchaIMG.Location = new System.Drawing.Point(280, 15);
+            this.captchaIMG.Margin = new System.Windows.Forms.Padding(6);
+            this.captchaIMG.Name = "captchaIMG";
+            this.captchaIMG.Size = new System.Drawing.Size(300, 190);
+            this.captchaIMG.TabIndex = 10;
+            this.captchaIMG.TabStop = false;
+            // 
+            // cptTextBox
+            // 
+            this.cptTextBox.Location = new System.Drawing.Point(319, 241);
+            this.cptTextBox.Margin = new System.Windows.Forms.Padding(6);
+            this.cptTextBox.MaxLength = 10;
+            this.cptTextBox.Name = "cptTextBox";
+            this.cptTextBox.Size = new System.Drawing.Size(214, 29);
+            this.cptTextBox.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(356, 211);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(142, 24);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Введите капчу";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(289, 282);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(138, 42);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Проверить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // replaceBTN
+            // 
+            this.replaceBTN.Location = new System.Drawing.Point(436, 282);
+            this.replaceBTN.Name = "replaceBTN";
+            this.replaceBTN.Size = new System.Drawing.Size(138, 42);
+            this.replaceBTN.TabIndex = 13;
+            this.replaceBTN.Text = "Обновить";
+            this.replaceBTN.UseVisualStyleBackColor = true;
             // 
             // Autarization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 352);
-            this.Controls.Add(this.captchaPanel);
+            this.Controls.Add(this.captchaIMG);
+            this.Controls.Add(this.cptTextBox);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.replaceBTN);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.pwdTextBox);
             this.Controls.Add(this.loginTextBox);
@@ -185,8 +172,6 @@
             this.Text = "Авторизация";
             this.Load += new System.EventHandler(this.Autarization_Load);
             ((System.ComponentModel.ISupportInitialize)(this.captchaIMG)).EndInit();
-            this.captchaPanel.ResumeLayout(false);
-            this.captchaPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,12 +184,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.TextBox pwdTextBox;
-        private System.Windows.Forms.Button replaceBTN;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PictureBox captchaIMG;
         private System.Windows.Forms.TextBox cptTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox captchaIMG;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel captchaPanel;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button replaceBTN;
     }
 }

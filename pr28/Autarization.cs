@@ -19,9 +19,14 @@ namespace pr28
         public Autarization()
         {
             InitializeComponent();
-            captchaPanel.Visible = false;
-        }
 
+            captchaIMG.Visible = false;
+            label3.Visible = false;
+            cptTextBox.Visible = false;
+            button2.Visible = false;
+            replaceBTN.Visible = false;
+        }
+        bool captchaTrue = false;
         private void Autarization_Load(object sender, EventArgs e)
         {
             CheckConnectionOnStart();
@@ -120,6 +125,15 @@ namespace pr28
                 if (loginTextBox.Text == "admin" && pwdTextBox.Text == "admin")
                 {
                     MessageBox.Show("Вход выполнен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MenuForm Menu = new MenuForm();
+                    this.Hide();
+                    Menu.ShowDialog();
+                    this.Show();
+                }
+                else if (authAtt>=1 && !captchaTrue)
+                {
+                    MessageBox.Show("Сначала введите капчу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    GenerateCaptcha();
                 }
                 else
                 {
@@ -138,12 +152,12 @@ namespace pr28
 
             if (authAtt == 1)
             {
-                MessageBox.Show("Логин и пароль введены неверно! Требуется ввод CAPTCHA.", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Логин или пароль введены неверно! Требуется ввод CAPTCHA.", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ShowCaptcha();
             }
             else if (authAtt > 1)
             {
-                MessageBox.Show("Логин, пароль или CAPTCHA введены неверно!", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Логин или пароль были введены неверно! \nСистема будет заблокирована на 10 секунд!", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cptTextBox.Text = "";
                 GenerateCaptcha();
                 BlockSystem();
@@ -152,8 +166,12 @@ namespace pr28
 
         private void ShowCaptcha()
         {
-            captchaPanel.Visible = true;
             GenerateCaptcha();
+            captchaIMG.Visible = true;
+            label3.Visible = true;
+            cptTextBox.Visible = true;
+            button2.Visible = true;
+            replaceBTN.Visible = true;
         }
 
         public void GenerateCaptcha()
@@ -204,8 +222,9 @@ namespace pr28
                     isBlocked = false;
                     SetControlsEnabled(true);
                     cptTextBox.Text = "";
-                    captchaPanel.Visible = false;
                     MessageBox.Show("Система разблокирована", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loginTextBox.Text = "";
+                    pwdTextBox.Text = "";
                 }));
             });
 
@@ -222,23 +241,6 @@ namespace pr28
             button2.Enabled = enabled;
             replaceBTN.Enabled = enabled;
             button3.Enabled = enabled;
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            if (cptTextBox.Text == cptAnswer)
-            {
-                MessageBox.Show("CAPTCHA введена верно!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                captchaPanel.Visible = false;
-                CheckCredentials();
-            }
-            else
-            {
-                MessageBox.Show("CAPTCHA введена неверно!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cptTextBox.Text = "";
-                GenerateCaptcha();
-                BlockSystem();
-            }
         }
 
         private void CheckCredentials()
@@ -263,9 +265,21 @@ namespace pr28
             ShowConnectionForm();
         }
 
-        private void captchaPanel_Paint(object sender, PaintEventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
+            if (cptTextBox.Text == cptAnswer)
+            {
+                MessageBox.Show("CAPTCHA введена верно!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                captchaTrue = true;
+                CheckCredentials();
+            }
+            else
+            {
+                MessageBox.Show("CAPTCHA введена неверно!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cptTextBox.Text = "";
+                GenerateCaptcha();
+                BlockSystem();
+            }
         }
     }
 }
