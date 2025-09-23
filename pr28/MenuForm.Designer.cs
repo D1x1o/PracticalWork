@@ -30,13 +30,17 @@ namespace pr28
         private void InitializeComponent()
         {
             this.Recover = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.viewProduct = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.SuspendLayout();
             // 
             // Recover
             // 
+<<<<<<< HEAD
             this.Recover.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
             this.Recover.Location = new System.Drawing.Point(16, 96);
             this.Recover.Margin = new System.Windows.Forms.Padding(7);
@@ -78,11 +82,33 @@ namespace pr28
             this.Controls.Add(this.Recover);
             this.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(7);
+=======
+            this.Recover.Location = new System.Drawing.Point(71, 92);
+            this.Recover.Margin = new System.Windows.Forms.Padding(6);
+            this.Recover.Name = "Recover";
+            this.Recover.Size = new System.Drawing.Size(174, 42);
+            this.Recover.TabIndex = 0;
+            this.Recover.Text = "Восстановление";
+            this.Recover.UseVisualStyleBackColor = true;
+            this.Recover.Click += new System.EventHandler(this.Recover_Click);
+            // 
+            // MenuForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(338, 428);
+            this.Controls.Add(this.Recover);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(6);
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.Name = "MenuForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Меню";
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.ResumeLayout(false);
 
         }
@@ -90,7 +116,10 @@ namespace pr28
         #endregion
 
         private System.Windows.Forms.Button Recover;
+<<<<<<< HEAD
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button viewProduct;
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
     }
 }

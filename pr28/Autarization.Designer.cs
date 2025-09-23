@@ -39,9 +39,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.replaceBTN = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.captchaIMG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.captchaIMG)).BeginInit();
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.SuspendLayout();
             // 
             // button1
@@ -92,6 +96,7 @@
             this.pwdTextBox.TabIndex = 1;
             // 
             // button3
+<<<<<<< HEAD
             // 
             this.button3.Location = new System.Drawing.Point(13, 343);
             this.button3.Name = "button3";
@@ -159,13 +164,76 @@
             this.pictureBox1.Size = new System.Drawing.Size(24, 25);
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
+=======
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 317);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(21, 23);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // captchaIMG
+            // 
+            this.captchaIMG.Location = new System.Drawing.Point(280, 15);
+            this.captchaIMG.Margin = new System.Windows.Forms.Padding(6);
+            this.captchaIMG.Name = "captchaIMG";
+            this.captchaIMG.Size = new System.Drawing.Size(300, 190);
+            this.captchaIMG.TabIndex = 10;
+            this.captchaIMG.TabStop = false;
+            // 
+            // cptTextBox
+            // 
+            this.cptTextBox.Location = new System.Drawing.Point(319, 241);
+            this.cptTextBox.Margin = new System.Windows.Forms.Padding(6);
+            this.cptTextBox.MaxLength = 10;
+            this.cptTextBox.Name = "cptTextBox";
+            this.cptTextBox.Size = new System.Drawing.Size(214, 29);
+            this.cptTextBox.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(356, 211);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(142, 24);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Введите капчу";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(289, 282);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(138, 42);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Проверить";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // replaceBTN
+            // 
+            this.replaceBTN.Location = new System.Drawing.Point(436, 282);
+            this.replaceBTN.Name = "replaceBTN";
+            this.replaceBTN.Size = new System.Drawing.Size(138, 42);
+            this.replaceBTN.TabIndex = 13;
+            this.replaceBTN.Text = "Обновить";
+            this.replaceBTN.UseVisualStyleBackColor = true;
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             // 
             // Autarization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 26F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(667, 381);
             this.Controls.Add(this.pictureBox1);
+=======
+            this.ClientSize = new System.Drawing.Size(611, 352);
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.Controls.Add(this.captchaIMG);
             this.Controls.Add(this.cptTextBox);
             this.Controls.Add(this.label3);
@@ -186,7 +254,10 @@
             this.Text = "Авторизация";
             this.Load += new System.EventHandler(this.Autarization_Load);
             ((System.ComponentModel.ISupportInitialize)(this.captchaIMG)).EndInit();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,6 +276,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button replaceBTN;
+<<<<<<< HEAD
         private System.Windows.Forms.PictureBox pictureBox1;
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
     }
 }

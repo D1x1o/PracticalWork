@@ -24,6 +24,7 @@ namespace pr28
             adminForm.ShowDialog();
             this.Show();
         }
+<<<<<<< HEAD
 
         private void viewProduct_Click(object sender, EventArgs e)
         {
@@ -32,5 +33,7 @@ namespace pr28
             SP.ShowDialog();
             this.Show();
         }
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
     }
 }

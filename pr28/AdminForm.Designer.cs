@@ -33,30 +33,47 @@ namespace pr28
             this.SelectTable = new System.Windows.Forms.ComboBox();
             this.recoverDb = new System.Windows.Forms.Button();
             this.ImportData = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+<<<<<<< HEAD
             this.label1.Location = new System.Drawing.Point(8, 45);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(199, 29);
+=======
+            this.label1.Location = new System.Drawing.Point(7, 39);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(198, 25);
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.label1.TabIndex = 0;
             this.label1.Text = "Выберите таблицу";
             // 
             // SelectTable
             // 
             this.SelectTable.FormattingEnabled = true;
+<<<<<<< HEAD
             this.SelectTable.Location = new System.Drawing.Point(13, 78);
             this.SelectTable.Name = "SelectTable";
             this.SelectTable.Size = new System.Drawing.Size(310, 37);
+=======
+            this.SelectTable.Location = new System.Drawing.Point(12, 67);
+            this.SelectTable.Name = "SelectTable";
+            this.SelectTable.Size = new System.Drawing.Size(286, 33);
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.SelectTable.TabIndex = 1;
             // 
             // recoverDb
             // 
+<<<<<<< HEAD
             this.recoverDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
             this.recoverDb.Location = new System.Drawing.Point(13, 233);
             this.recoverDb.Name = "recoverDb";
@@ -64,10 +81,19 @@ namespace pr28
             this.recoverDb.TabIndex = 2;
             this.recoverDb.Text = "Восстановить БД";
             this.recoverDb.UseVisualStyleBackColor = false;
+=======
+            this.recoverDb.Location = new System.Drawing.Point(12, 201);
+            this.recoverDb.Name = "recoverDb";
+            this.recoverDb.Size = new System.Drawing.Size(286, 40);
+            this.recoverDb.TabIndex = 2;
+            this.recoverDb.Text = "Восстановить БД";
+            this.recoverDb.UseVisualStyleBackColor = true;
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.recoverDb.Click += new System.EventHandler(this.recoverDb_Click);
             // 
             // ImportData
             // 
+<<<<<<< HEAD
             this.ImportData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
             this.ImportData.Location = new System.Drawing.Point(13, 180);
             this.ImportData.Name = "ImportData";
@@ -93,17 +119,40 @@ namespace pr28
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(336, 300);
             this.Controls.Add(this.pictureBox1);
+=======
+            this.ImportData.Location = new System.Drawing.Point(12, 155);
+            this.ImportData.Name = "ImportData";
+            this.ImportData.Size = new System.Drawing.Size(286, 40);
+            this.ImportData.TabIndex = 3;
+            this.ImportData.Text = "Импорт данных";
+            this.ImportData.UseVisualStyleBackColor = true;
+            this.ImportData.Click += new System.EventHandler(this.ImportData_Click);
+            // 
+            // AdminForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(310, 259);
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.Controls.Add(this.ImportData);
             this.Controls.Add(this.recoverDb);
             this.Controls.Add(this.SelectTable);
             this.Controls.Add(this.label1);
+<<<<<<< HEAD
             this.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+=======
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.Name = "AdminForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Форма Администратора";
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,6 +164,9 @@ namespace pr28
         private System.Windows.Forms.ComboBox SelectTable;
         private System.Windows.Forms.Button recoverDb;
         private System.Windows.Forms.Button ImportData;
+<<<<<<< HEAD
         private System.Windows.Forms.PictureBox pictureBox1;
+=======
+>>>>>>> c4a564382dc5c06a1a8c61c22bced08909b53e00
     }
 }
