@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using pr28_connection;
+using MySql.Data.MySqlClient;
+using System.IO;
+
+namespace pr28
+{
+    public partial class ShowProduct : Form
+    {
+        string ConnStr = ConnectoinString.GetConnectionString();
+        public ShowProduct()
+        {
+            InitializeComponent();
+            FillDGV();
+        }
+
+        private void FillDGV()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(ConnStr))
+                {
+                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT * FROM PRODUCT;", conn);
+                    adapter.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+
+                dataGridView1.Columns["ProductArticleNumber"].Visible = false;
+                dataGridView1.Columns["ProductName"].Visible = false;
+                dataGridView1.Columns["ProductUnit"].Visible = false;
+                dataGridView1.Columns["ProductMaxDiscount"].Visible = false; 
+                dataGridView1.Columns["ProductManufacturer"].Visible = false;
+                dataGridView1.Columns["ProductSupplier"].Visible = false;
+                dataGridView1.Columns["ProductUnit"].Visible = false;
+                dataGridView1.Columns["ProductDiscountAmount"].Visible = false;
+                dataGridView1.Columns["ProductCategory"].Visible = false;
+                dataGridView1.Columns["ProductCost"].Visible = false;
+                dataGridView1.Columns["ProductDescription"].Visible = false;
+                dataGridView1.Columns["ProductQuantityInStockrole"].Visible = false;
+
+
+                dataGridView1.Columns[11].DisplayIndex = 1;
+
+                DataGridViewImageColumn imageColumn = new DataGridViewImageColumn();
+                imageColumn.Name = "ImageColumn"; // Имя столбца
+                imageColumn.HeaderText = "Изображение"; // Заголовок столбца
+                imageColumn.ImageLayout = DataGridViewImageCellLayout.Zoom; // Или другое значение, например, Zoom, Stretch, Normal
+                dataGridView1.Columns.Add(imageColumn);
+                dataGridView1.Columns["ImageColumn"].DisplayIndex = 0;
+
+                // 2. Добавить строку и изображение в неё
+                // Предположим, у вас уже есть датасет или вы добавляете строки вручную
+                //int rowIndex = dataGridView1.Rows.Add(); // Получаем индекс новой строки
+                                                         // Устанавливаем изображение из файла
+                                                         // Замените "путь_к_вашему_изображению.jpg" на реальный путь
+                //dataGridView1.Rows[rowIndex].Cells["ImageColumn"].Value = Image.FromFile(@"путь_к_вашему_изображению.jpg");
+
+                int rowCounts = dataGridView1.RowCount;
+                for (int i = 0; i < rowCounts; i++)
+                {
+
+                    // Получаем ячейку с именем файла картинки (предположительно это столбец 11)
+                    var fileNameCell = dataGridView1.Rows[i].Cells["ImageColumn"];
+                    string fileName = dataGridView1.Rows[i].Cells[11].Value.ToString().Trim();
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        string imagePath = $"img/{fileName}";
+                        if (File.Exists(imagePath))
+                        {
+                            // Заменяем текст на изображение
+                            fileNameCell.Value = Image.FromFile(imagePath);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}!!!!!!!!!!!!!!!!!!!");
+            }
+        }
+    }
+
+
+}
