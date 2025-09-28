@@ -11,17 +11,24 @@ using System.IO;
 using pr28_connection;
 using MySql.Data.MySqlClient;
 using System.Threading;
+using System.Security.Cryptography;
 
 namespace pr28
 {
     public partial class Autarization : Form
     {
+        string connStr = ConnectoinString.GetConnectionString();
         public Autarization()
         {
             InitializeComponent();
-            captchaPanel.Visible = false;
-        }
 
+            captchaIMG.Visible = false;
+            label3.Visible = false;
+            cptTextBox.Visible = false;
+            button2.Visible = false;
+            replaceBTN.Visible = false;
+        }
+        bool captchaTrue = false;
         private void Autarization_Load(object sender, EventArgs e)
         {
             CheckConnectionOnStart();
@@ -38,7 +45,7 @@ namespace pr28
 
                 try
                 {
-                    string connStr = ConnectoinString.GetConnectionString();
+                    
                     using (MySqlConnection mysqlconn = new MySqlConnection(connStr))
                     {
                         mysqlconn.Open();
@@ -115,20 +122,115 @@ namespace pr28
                 return;
             }
 
-            if (loginTextBox.Text.Length >= 3 && pwdTextBox.Text.Length >= 3)
+            // Проверка длины
+            if (loginTextBox.Text.Length < 3 || pwdTextBox.Text.Length < 3)
             {
-                if (loginTextBox.Text == "admin" && pwdTextBox.Text == "admin")
+                MessageBox.Show("Логин или пароль слишком короткие", "Ошибка",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Админ
+            if (loginTextBox.Text == "admin" && pwdTextBox.Text == "admin")
+            {
+                MessageBox.Show("Вход выполнен!", "Успех",
+                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MenuForm Menu = new MenuForm();
+                this.Hide();
+                Menu.ShowDialog();
+                this.Show();
+                return;
+            }
+
+            // Проверка капчи
+            if (authAtt >= 1 && !captchaTrue)
+            {
+                MessageBox.Show("Сначала введите капчу!", "Ошибка",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                GenerateCaptcha();
+                return;
+            }
+
+            // Обычный пользователь
+            if (CheckUser())
+            {
+                int role = CheckUserRole();
+                if (role == 1)
                 {
-                    MessageBox.Show("Вход выполнен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UserSettings.Default.user = loginTextBox.Text.Trim();
+                    MessageBox.Show("Добро пожаловать!", "Вход выполнен",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UserMenu menu = new UserMenu();
+                    Hide();
+                    menu.ShowDialog();
+                    Show();
+
+                    // Сбрасываем счетчик попыток при успешном входе
+                    authAtt = 0;
+                    captchaTrue = false;
                 }
-                else
+                return;
+            }
+
+            HandleFailedLogin();
+        }
+
+
+        private bool CheckUser()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand($"SELECT UserPassword FROM user WHERE UserLogin = '{loginTextBox.Text}';", conn);
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
                 {
-                    HandleFailedLogin();
+                    string storedHash = result.ToString();
+                    string inputHash = GetHashPwd(pwdTextBox.Text);
+
+                    if (storedHash == inputHash)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Логин или пароль введены неверно!");
+                    }
                 }
             }
-            else
+            return false;
+        }
+
+        private int CheckUserRole()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connStr))
             {
-                MessageBox.Show("Логин или пароль слишком короткие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand($"SELECT UserRole FROM user WHERE UserLogin = '{loginTextBox.Text}';", conn);
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    return Convert.ToInt32(result);
+                }
+            }
+            return -1;
+        }
+
+        private string GetHashPwd(string pwd)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(pwd);
+                byte[] hash = sha256.ComputeHash(bytes);
+
+                StringBuilder result = new StringBuilder();
+                foreach (byte b in hash)
+                {
+                    result.Append(b.ToString("x2"));
+                }
+                return result.ToString();
             }
         }
 
@@ -138,12 +240,12 @@ namespace pr28
 
             if (authAtt == 1)
             {
-                MessageBox.Show("Логин и пароль введены неверно! Требуется ввод CAPTCHA.", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Логин или пароль введены неверно! Требуется ввод CAPTCHA.", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ShowCaptcha();
             }
             else if (authAtt > 1)
             {
-                MessageBox.Show("Логин, пароль или CAPTCHA введены неверно!", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Логин или пароль были введены неверно! \nСистема будет заблокирована на 10 секунд!", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cptTextBox.Text = "";
                 GenerateCaptcha();
                 BlockSystem();
@@ -152,12 +254,25 @@ namespace pr28
 
         private void ShowCaptcha()
         {
-            captchaPanel.Visible = true;
             GenerateCaptcha();
+            captchaIMG.Visible = true;
+            label3.Visible = true;
+            cptTextBox.Visible = true;
+            button2.Visible = true;
+            replaceBTN.Visible = true;
+        }
+        private void HideCaptcha()
+        {
+            captchaIMG.Visible = false;
+            label3.Visible = false;
+            cptTextBox.Visible = false;
+            button2.Visible = false;
+            replaceBTN.Visible = false;
         }
 
         public void GenerateCaptcha()
         {
+            button1.Enabled = false;
             Random r = new Random();
             int captID = r.Next(1, 4);
             string imgPath = "";
@@ -204,8 +319,10 @@ namespace pr28
                     isBlocked = false;
                     SetControlsEnabled(true);
                     cptTextBox.Text = "";
-                    captchaPanel.Visible = false;
                     MessageBox.Show("Система разблокирована", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loginTextBox.Text = "";
+                    pwdTextBox.Text = "";
+                    HideCaptcha();
                 }));
             });
 
@@ -224,23 +341,6 @@ namespace pr28
             button3.Enabled = enabled;
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            if (cptTextBox.Text == cptAnswer)
-            {
-                MessageBox.Show("CAPTCHA введена верно!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                captchaPanel.Visible = false;
-                CheckCredentials();
-            }
-            else
-            {
-                MessageBox.Show("CAPTCHA введена неверно!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                cptTextBox.Text = "";
-                GenerateCaptcha();
-                BlockSystem();
-            }
-        }
-
         private void CheckCredentials()
         {
             if (loginTextBox.Text == "admin" && pwdTextBox.Text == "admin")
@@ -253,19 +353,32 @@ namespace pr28
             }
         }
 
-        private void replaceBTN_Click_1(object sender, EventArgs e)
-        {
-            GenerateCaptcha();
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             ShowConnectionForm();
         }
 
-        private void captchaPanel_Paint(object sender, PaintEventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
+            if (cptTextBox.Text == cptAnswer)
+            {
+                MessageBox.Show("CAPTCHA введена верно!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                captchaTrue = true;
+                button1.Enabled = true;
+                CheckCredentials();
+            }
+            else
+            {
+                MessageBox.Show("CAPTCHA введена неверно!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cptTextBox.Text = "";
+                GenerateCaptcha();
+                BlockSystem();
+            }
+        }
 
+        private void replaceBTN_Click(object sender, EventArgs e)
+        {
+            GenerateCaptcha();
         }
     }
 }
