@@ -211,6 +211,7 @@ namespace pr28
             string query = $"INSERT INTO cart (OrderComposition, OrderDate, OrderDeliveryDate, OrderPickupPoint, OrderClient, OrederCode, OrderStatus) VALUES ('{article}, 1', '{currentDate}', '{datePlus7Days}', 11, {userID}, {code}, 1);";
             using (MySqlConnection conn = new MySqlConnection(ConnStr))
             {
+
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.ExecuteNonQuery();
